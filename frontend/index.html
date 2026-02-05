@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogAnalyzer Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="background"></div>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">SIEM Lab Companion</p>
+        <h1>LogAnalyzer Agent</h1>
+        <p class="subhead">Analyze any text logs with local Ollama models. Upload files, detect log types, and get a concise incident-style report.</p>
+      </div>
+      <div class="badge">Offline-first • Free-tier friendly</div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Input</h2>
+        <p>Paste logs or upload a file. Choose quick for fast triage, deep for thorough review.</p>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label for="backendUrl">Backend URL</label>
+          <input id="backendUrl" type="text" value="http://localhost:8000" />
+        </div>
+        <div class="field">
+          <label for="mode">Mode</label>
+          <select id="mode">
+            <option value="quick">Quick</option>
+            <option value="standard" selected>Standard</option>
+            <option value="deep">Deep</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="logType">Log Type (optional)</label>
+          <input id="logType" type="text" placeholder="syslog, nginx_access, windows_event" />
+        </div>
+        <div class="field">
+          <label for="fileInput">Upload file</label>
+          <input id="fileInput" type="file" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="logText">Paste logs</label>
+        <textarea id="logText" placeholder="Paste log lines here..."></textarea>
+      </div>
+      <div class="actions">
+        <button id="analyzeBtn">Analyze Logs</button>
+        <button id="clearBtn" class="ghost">Clear</button>
+      </div>
+    </section>
+
+    <section class="panel" id="resultsPanel">
+      <div class="panel-header">
+        <h2>Results</h2>
+        <p id="statusText">Ready.</p>
+      </div>
+      <div class="results">
+        <div>
+          <h3>Summary</h3>
+          <pre id="summaryOutput">No analysis yet.</pre>
+        </div>
+        <div>
+          <h3>Details</h3>
+          <pre id="detailOutput">Upload logs to see details.</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

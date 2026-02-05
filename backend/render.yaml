@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: loganalyzer-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: OLLAMA_BASE_URL
+        value: http://localhost:11434
+      - key: OLLAMA_MODEL
+        value: llama3.2
+      - key: CORS_ORIGINS
+        value: "*"
